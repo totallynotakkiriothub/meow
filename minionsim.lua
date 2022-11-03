@@ -59,7 +59,7 @@ task.spawn(
 					end
 				end)
 				repeat
-					task.wait(.3)
+					task.wait()
 					for i, v in pairs(TableTargets) do
 						if v.Variant1:FindFirstChildOfClass("MeshPart"):GetAttribute("Destroyed") ~= nil then
 							table.remove(TableTargets, i)
