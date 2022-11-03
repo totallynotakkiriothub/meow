@@ -44,9 +44,9 @@ UserInputService.InputBegan:Connect(function(input)
 end)
 
 task.spawn(
-	function() --// Basically wallb my beloved, you can only fire the remote once per instance, so this is the best way i found for it to work, but i hope it's possible some other way sicne this shit is laggy ong
+	function()
 		while true do
-			task.wait()
+			task.wait(0.5)
 			if Enabled then
 				local MinionsEquipped = Player.Inventory.Party
 				local TotalAmount = #MinionsEquipped
