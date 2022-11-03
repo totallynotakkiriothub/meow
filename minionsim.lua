@@ -1,4 +1,3 @@
--- cant be bothered obfuscating it
 local PlayerData = require(game.ReplicatedStorage.Core.PlayerInfo.PlayerData)
 local Player = PlayerData:getLocalPlayerData()
 local Click = game.ReplicatedStorage.RemoteEvents.BreakableClickEvent
@@ -44,7 +43,7 @@ UserInputService.InputBegan:Connect(function(input)
 end)
 
 task.spawn(
-	function()
+	function() --// Basically wallb my beloved, you can only fire the remote once per instance, so this is the best way i found for it to work, but i hope it's possible some other way sicne this shit is laggy ong
 		while true do
 			task.wait()
 			if Enabled then
