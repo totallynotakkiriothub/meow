@@ -81,3 +81,54 @@ workspace.Loaded.Drops.DescendantAdded:Connect(function(v)
 		v.CFrame = Client.Character.HumanoidRootPart.CFrame
 	end
 end)
+
+local function ConvertNumberToSuffix(number)
+	local format = { "K", "M", "B", "T", "Q" }
+	local suffix = ""
+	local i = 1
+	while number >= 1000 do
+		number = number / 1000
+		suffix = format[i]
+		i = i + 1
+	end
+	return string.format("%.1f", number) .. suffix
+end
+
+local function getPerMinute()
+	local current = {
+		Gold = Player.Currency.Gold,
+		CandyCorn = Player.Currency.CandyCorn,
+		FireGems = Player.Currency.FireGems,
+		FutureGems = Player.Currency.FutureGems,
+		MagicGems = Player.Currency.MagicGems,
+		Gems = Player.Currency.Gems,
+	}
+	while task.wait(60) do
+		local new = {
+			Gold = Player.Currency.Gold,
+			CandyCorn = Player.Currency.CandyCorn,
+			FireGems = Player.Currency.FireGems,
+			FutureGems = Player.Currency.FutureGems,
+			MagicGems = Player.Currency.MagicGems,
+			Gems = Player.Currency.Gems,
+		}
+		local perminute = {
+			Gold = new.Gold - current.Gold,
+			CandyCorn = new.CandyCorn - current.CandyCorn,
+			FireGems = new.FireGems - current.FireGems,
+			FutureGems = new.FutureGems - current.FutureGems,
+			MagicGems = new.MagicGems - current.MagicGems,
+			Gems = new.Gems - current.Gems,
+		}
+		current = new
+		print("--//     " .. os.date("%X") .. "     //--")
+		print("Gold/min: " .. perminute.Gold .. " (" .. ConvertNumberToSuffix(perminute.Gold) .. ")")
+		print("Candy/min: " .. perminute.CandyCorn .. " (" .. ConvertNumberToSuffix(perminute.CandyCorn) .. ")")
+		print("Fire-Gems/min: " .. perminute.FireGems .. " (" .. ConvertNumberToSuffix(perminute.FireGems) .. ")")
+		print("Future-Gems/min: " .. perminute.FutureGems .. " (" .. ConvertNumberToSuffix(perminute.FutureGems) .. ")")
+		print("Magic-Gems/min: " .. perminute.MagicGems .. " (" .. ConvertNumberToSuffix(perminute.MagicGems) .. ")")
+		print("Gems/min: " .. perminute.Gems .. " (" .. ConvertNumberToSuffix(perminute.Gems) .. ")")
+	end
+end
+
+getPerMinute()
