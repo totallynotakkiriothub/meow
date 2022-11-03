@@ -46,7 +46,7 @@ end)
 task.spawn(
 	function()
 		while true do
-			task.wait(1)
+			task.wait()
 			if Enabled then
 				local MinionsEquipped = Player.Inventory.Party
 				local TotalAmount = #MinionsEquipped
@@ -59,7 +59,7 @@ task.spawn(
 					end
 				end)
 				repeat
-					task.wait()
+					task.wait(.3)
 					for i, v in pairs(TableTargets) do
 						if v.Variant1:FindFirstChildOfClass("MeshPart"):GetAttribute("Destroyed") ~= nil then
 							table.remove(TableTargets, i)
