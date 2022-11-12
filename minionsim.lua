@@ -1,7 +1,3 @@
-repeat
-	task.wait()
-until game:IsLoaded()
-
 if not game.PlaceId == 10070062081 then
 	game.Players.LocalPlayer:Kick("This script is not supported in this game.")
 end
